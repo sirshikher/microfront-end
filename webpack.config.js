@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); 
+// const HtmlWebpackPlugin = require('html-webpack-plugin'); 
 
 module.exports = {
   mode: 'development',
@@ -84,7 +84,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({template: './index.html'})
+    // new HtmlWebpackPlugin({template: './index.html'})
   ],
   devtool: 'source-map',
   externals: [],

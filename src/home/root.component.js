@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import {
   BrowserRouter as Router,
@@ -7,121 +7,92 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-/* you'll need this CSS somewhere
-.fade-enter {
-  opacity: 0;
-  z-index: 1;
+import axios from "axios";
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from "reactstrap";
+import { isBlock } from "typescript";
+class AnimationExample extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newsData: ""
+    };
+  }
+
+  componentWillMount() {
+    this.NewsAPicall();
+  }
+  NewsAPicall() {
+    var url =
+      "https://newsapi.org/v2/everything?q=bitcoin&apiKey=b9ff37e754e041138501e1144b2544a4";
+    const response = axios
+      .get(url, {
+        mode: "cors"
+      })
+      .then(res =>
+        this.setState({
+          newsData: res
+        })
+      );
+  }
+
+  render() {
+    this.state.newsData &&
+      console.log("res::", this.state.newsData.data.articles);
+
+    return (
+      <div >
+        {this.state.newsData &&
+          this.state.newsData.data.articles.map(item => (
+            <Card style={styles.card}>
+              <CardImg
+                top
+                width="100%"
+                src={item.urlToImage}
+                alt="Card image cap"
+              />
+              <CardBody>
+                <CardTitle style={styles.cardtitle}> {item.title}</CardTitle>
+                <CardSubtitle style={styles.cardsubtitle}><b>Author:</b> {item.author}</CardSubtitle>
+                <CardText style={styles.cardtext}>{item.content}</CardText>
+                <a href={item.url} target="_blank" class="button">
+                  Watch Full news
+                </a>
+              </CardBody>
+            </Card>
+          ))}
+      </div>
+    );
+  }
 }
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 250ms ease-in;
-}
-*/
-const AnimationExample = () => (
-  <Router basename="/home">
-    <Route
-      render={({ location }) => (
-        <div style={{position: 'relative', height: '100%'}}>
-          <Route
-            exact
-            path="/"
-            render={() => <Redirect to="/hsl/10/90/50" />}
-          />
-          <ul style={styles.nav}>
-            <NavLink to="/hsl/10/90/50">Red</NavLink>
-            <NavLink to="/hsl/120/100/40">Green</NavLink>
-            <NavLink to="/rgb/33/150/243">Blue</NavLink>
-            <NavLink to="/rgb/240/98/146">Pink</NavLink>
-          </ul>
-          <div style={styles.content}>
-            <TransitionGroup>
-              {/* no different than other usage of
-                CSSTransition, just make sure to pass
-                `location` to `Switch` so it can match
-                the old location as it animates out
-              */}
-              <CSSTransition key={location.key} classNames="fade" timeout={300}>
-                <Switch location={location}>
-                  <Route exact path="/hsl/:h/:s/:l" component={HSL} />
-                  <Route exact path="/rgb/:r/:g/:b" component={RGB} />
-                  {/* Without this `Route`, we would get errors during
-                    the initial transition from `/` to `/hsl/10/90/50`
-                  */}
-                  <Route render={() => <div>Not Found</div>} />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
-          </div>
-        </div>
-      )}
-    />
-  </Router>
-);
-const NavLink = props => (
-  <li style={styles.navItem}>
-    <Link {...props} style={{ color: "inherit" }} />
-  </li>
-);
-const HSL = ({ match: { params } }) => (
-  <div
-    style={{
-      ...styles.fill,
-      ...styles.hsl,
-      background: `hsl(${params.h}, ${params.s}%, ${params.l}%)`
-    }}
-  >
-    hsl({params.h}, {params.s}%, {params.l}%)
-  </div>
-);
-const RGB = ({ match: { params } }) => (
-  <div
-    style={{
-      ...styles.fill,
-      ...styles.rgb,
-      background: `rgb(${params.r}, ${params.g}, ${params.b})`
-    }}
-  >
-    rgb({params.r}, {params.g}, {params.b})
-  </div>
-);
 const styles = {};
-styles.fill = {
-  position: "absolute",
-  left: 0,
-  right: 0,
-  top: 0,
-  bottom: 0
+styles.card = {
+  position: "relative",
+  maxWidth: "25%",
+  display:"inline-Block"
 };
-styles.content = {
-  ...styles.fill,
-  top: "40px",
-  textAlign: "center"
-};
-styles.nav = {
-  padding: 0,
-  margin: 0,
-  position: "absolute",
-  top: 0,
-  height: "40px",
-  width: "100%",
-  display: "flex"
-};
-styles.navItem = {
-  textAlign: "center",
-  flex: 1,
-  listStyleType: "none",
-  padding: "10px"
-};
-styles.hsl = {
-  ...styles.fill,
-  color: "white",
-  paddingTop: "20px",
-  fontSize: "30px"
-};
-styles.rgb = {
-  ...styles.fill,
-  color: "white",
-  paddingTop: "20px",
-  fontSize: "30px"
-};
+styles.cardtitle = {
+  color:"red",
+  fontWeight: "bold",
+  marginLeft:"3%"
+
+}
+styles.cardsubtitle = {
+ 
+  marginLeft:"3%"
+
+}
+styles.cardtext = {
+  
+  marginLeft:"3%"
+
+}
+
 export default AnimationExample;

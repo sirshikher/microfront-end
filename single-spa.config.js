@@ -22,11 +22,11 @@ registerApplication(
 
   () => import('./src/navBar/navbar.app.js').then(module => module.navBar),  () => true
 );
-// registerApplication(
-//   'angularJS', 
-//   () => import ('./src/angularJS/angularJS.app.js'), 
-//   pathPrefix('/angularJS')
-// );
+registerApplication(
+  'angularJS', 
+  () => import ('./src/angularJS/angularJS.app.js'), 
+  pathPrefix('/angularJS')
+);
 
 
 
