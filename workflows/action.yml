@@ -1,7 +1,0 @@
-name: 'Micro-Frontend-news'
-
-on:
-  push:
-  schedule:
-    - cron: '0 14 * * *'
-

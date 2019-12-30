@@ -1,4 +1,5 @@
 import { registerApplication, start } from 'single-spa'
+const locations = location.pathname
 
 function pathPrefix(prefix) {
   return function(location) {
@@ -8,7 +9,6 @@ function pathPrefix(prefix) {
 
 
 registerApplication(
-  // Name of our single-spa application
   'home',
   // Our loading function
   () => import('./src/home/home.app.js'),
@@ -19,15 +19,14 @@ registerApplication(
 );
 registerApplication(
   'navBar', 
-
-  () => import('./src/navBar/navbar.app.js').then(module => module.navBar),  () => true
+  () => import('./src/navBar/navbar.app.js').then(module => module.navBar),  () => true, 
+  
 );
 registerApplication(
   'angularJS', 
   () => import ('./src/angularJS/angularJS.app.js'), 
   pathPrefix('/angularJS')
 );
-
 
 
 start();

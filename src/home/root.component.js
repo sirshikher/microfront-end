@@ -26,12 +26,12 @@ class AnimationExample extends Component {
     };
   }
 
-  componentWillMount() {
+  componentWillMount() {    
     this.NewsAPicall();
   }
   NewsAPicall() {
     var url =
-      "https://newsapi.org/v2/everything?q=bitcoin&apiKey=b9ff37e754e041138501e1144b2544a4";
+      `https://newsapi.org/v2/everything?q=${location.pathname}&apiKey=b9ff37e754e041138501e1144b2544a4`;
     const response = axios
       .get(url, {
         mode: "cors"
@@ -43,12 +43,10 @@ class AnimationExample extends Component {
       );
   }
 
-  render() {
-    this.state.newsData &&
-      console.log("res::", this.state.newsData.data.articles);
-
+  render() {    
+  
     return (
-      <div >
+      <div>
         {this.state.newsData &&
           this.state.newsData.data.articles.map(item => (
             <Card style={styles.card}>
@@ -60,9 +58,16 @@ class AnimationExample extends Component {
               />
               <CardBody>
                 <CardTitle style={styles.cardtitle}> {item.title}</CardTitle>
-                <CardSubtitle style={styles.cardsubtitle}><b>Author:</b> {item.author}</CardSubtitle>
+                <CardSubtitle style={styles.cardsubtitle}>
+                  <b>Author:</b> {item.author}
+                </CardSubtitle>
                 <CardText style={styles.cardtext}>{item.content}</CardText>
-                <a href={item.url} target="_blank" class="button">
+                <a
+                  href={item.url}
+                  target="_blank"
+                  className="waves-effect waves-light btn-large"
+                  style={{marginRight: "10px"}}
+                >
                   Watch Full news
                 </a>
               </CardBody>
@@ -76,23 +81,18 @@ const styles = {};
 styles.card = {
   position: "relative",
   maxWidth: "25%",
-  display:"inline-Block"
+  display: "inline-Block"
 };
 styles.cardtitle = {
-  color:"red",
+  color: "red",
   fontWeight: "bold",
-  marginLeft:"3%"
-
-}
+  marginLeft: "3%"
+};
 styles.cardsubtitle = {
- 
-  marginLeft:"3%"
-
-}
+  marginLeft: "3%"
+};
 styles.cardtext = {
-  
-  marginLeft:"3%"
-
-}
+  marginLeft: "3%"
+};
 
 export default AnimationExample;

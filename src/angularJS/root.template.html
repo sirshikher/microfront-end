@@ -5,16 +5,11 @@
         Angular 1 example
       </h4>
       <p class="caption">
-        This is a sample application written with Angular 1.5 and angular-ui-router.
+        This is a sample application written with Angular.
       </p>
     </div>
     <div>
-    <form name="myApp" class="form-inline waves-light" mdbWavesEffect>
-  <div ng-app="myApp" ng-controller="myCtrl" class="md-form mt-0">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" ng-model="firstName">'
-    
-  </div>
-</form>
+
 
     <!-- These Routes will be set up in the routes.js file -->
       <a class="waves-effect waves-light btn-large" href="/angularJS/gifs" style="margin-right: 10px">
@@ -30,9 +25,3 @@
     </div>
   </div>
 </div>
-<script>
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
-    $scope.firstName = "John";
-});
-</script>
