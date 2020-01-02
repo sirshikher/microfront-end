@@ -15,5 +15,3 @@ jobs:
         uses: actions/setup-node@v1
       - name: 'Install NPM dependencies'
         run: npm install
-      - name: 'Run code'
-        run: npm start
