@@ -19,7 +19,7 @@
     "react-dom": "16.8.6",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "reactstrap": "8.0.1",
     "single-spa": "^4.4.1",
     "single-spa-angularjs": "^3.1.0",
@@ -72,7 +72,7 @@
     "html-loader": "^0.5.5",
     "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.9.0"
   }
 }
